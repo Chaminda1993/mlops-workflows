@@ -1,15 +1,15 @@
 #!/bin/sh
 
-if [ ! -d "../.github/workflows" ]; then
+if [ ! -d ".github/workflows" ]; then
 echo "Starting setup github actions workflow"
-mkdir -p ../.github/workflows/
-cp -f *.yml ../.github/workflows/
-cp -f *.toml ../
-cp -f install_Company_dependencies.sh ../
+mkdir -p .github/workflows/
+cp -f mlops-workflows/*.yml .github/workflows/
+cp -f mlops-workflows*.toml .
+cp -f mlops-workflows/install_Company_dependencies.sh .
+rm -rf mlops-workflows
 echo "Setup completed"
 
 echo "Start pushing workflow to repository"
-cd ../
 git add .github/workflows/*.yml
 git add *.toml
 git add install_Company_dependencies.sh
