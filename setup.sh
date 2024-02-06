@@ -4,7 +4,7 @@ if [ ! -d ".github/workflows" ]; then
 echo "Starting setup github actions workflow"
 mkdir -p .github/workflows/
 cp -f mlops-workflows/*.yml .github/workflows/
-cp -f mlops-workflows*.toml .
+cp -f mlops-workflows/*.toml .
 cp -f mlops-workflows/install_Company_dependencies.sh .
 rm -rf mlops-workflows
 echo "Setup completed"
