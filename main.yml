@@ -54,10 +54,33 @@ jobs:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
 
-      - name: Configure company dependancies
-        if: false
+      # Company dependancies installation
+      - name: Clone JaxRK repository
+        uses: actions/checkout@v2
+        with:
+          repository: exazyme/JaxRK.git
+          path: resources/
+          ref: main
+          token: ${{ github.token }}
+      - name: Clone protein_engineering_data repository
+        uses: actions/checkout@v2
+        with:
+          repository: exazyme/protein_engineering_data.git
+          path: resources/
+          ref: dev
+          token: ${{ github.token }}
+      - name: Clone enzyme_efficiency_prediction repository
+        uses: actions/checkout@v2
+        with:
+          repository: exazyme/enzyme_efficiency_prediction.git
+          path: resources/
+          ref: dev
+          token: ${{ github.token }}
+      - name: Install dependancies
         run: |
-          sh install_Company_dependencies.sh
+          cd resources/JaxRK/ && pip install -e "./JaxRK[ci]" && cd ../../
+          cd resources/protein_engineering_data/ && pip install -e "./protein_engineering_data[ci, doc]" && cd ../../
+          cd resources/enzyme_efficiency_prediction/ && pip install -e "./enzyme_efficiency_prediction[ci, doc]" && cd ../../
       
       - name: Configure dependancies
         run: |
