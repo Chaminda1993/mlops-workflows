@@ -14,7 +14,7 @@ The threshold value for unit test coverage can be changed by modifying the `.git
 
 ## Dependency Resolution
 
-Dependencies are resolved by triggering the provided script `install_Company_dependencies.sh`, and you have the option to enable it by changing the `main.yml` file. Currently, it is disabled.
+Dependencies are resolved in the `main.yml` file.
 
 ## Workflow Optimization
 

@@ -14,6 +14,7 @@ on:
   push:  
     branches:
       - main
+      - dev_ops
 
 env:
   MIN_COV: 80
@@ -59,28 +60,33 @@ jobs:
         uses: actions/checkout@master
         with:
           name: exazyme/JaxRK
-          path: resources/
+          path: resources/JaxRK/
           ref: main
           token: ${{ github.token }}
       - name: Clone protein_engineering_data repository
         uses: actions/checkout@master
         with:
           name: exazyme/protein_engineering_data
-          path: resources/
+          path: resources/protein_engineering_data/
           ref: dev
           token: ${{ github.token }}
       - name: Clone enzyme_efficiency_prediction repository
         uses: actions/checkout@master
         with:
           name: exazyme/enzyme_efficiency_prediction
-          path: resources/
+          path: resources/enzyme_efficiency_prediction/
           ref: dev
           token: ${{ github.token }}
-      - name: Install dependancies
+      - name: Install Company dependancies
         run: |
-          cd resources/JaxRK/ && pip install -e "./JaxRK[ci]" && cd ../../
-          cd resources/protein_engineering_data/ && pip install -e "./protein_engineering_data[ci, doc]" && cd ../../
-          cd resources/enzyme_efficiency_prediction/ && pip install -e "./enzyme_efficiency_prediction[ci, doc]" && cd ../../
+          pip install --upgrade pip
+          tree -L 2 resources
+          cd resources/
+          pip install -e "./JaxRK[ci]"
+          pip install -e "./protein_engineering_data[ci, doc]"
+          pip install -e "./enzyme_efficiency_prediction[ci, doc]"
+          cd ../
+          rm -rf resources
       
       - name: Configure dependancies
         run: |
