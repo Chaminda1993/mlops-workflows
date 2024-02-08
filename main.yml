@@ -56,23 +56,23 @@ jobs:
 
       # Company dependancies installation
       - name: Clone JaxRK repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
-          repository: exazyme/JaxRK.git
+          name: exazyme/JaxRK
           path: resources/
           ref: main
           token: ${{ github.token }}
       - name: Clone protein_engineering_data repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
-          repository: exazyme/protein_engineering_data.git
+          name: exazyme/protein_engineering_data
           path: resources/
           ref: dev
           token: ${{ github.token }}
       - name: Clone enzyme_efficiency_prediction repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@master
         with:
-          repository: exazyme/enzyme_efficiency_prediction.git
+          name: exazyme/enzyme_efficiency_prediction
           path: resources/
           ref: dev
           token: ${{ github.token }}
